@@ -13,8 +13,13 @@ namespace Assets.Scripts
         [SerializeField] private float speed = 10F;
         private ObjectPool<IBullet> bulletPool;
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
+            Debug.Log("Bullet collided with " + collision.gameObject.name);
+            if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hitable) )
+            {
+                hitable.Hit(1);
+            }
             OnHit();
         }
         private void Update()
@@ -43,15 +48,7 @@ namespace Assets.Scripts
 
         public void HandleOutOfScene()
         {
-            if (Camera.main == null) return;
-            float outOfBoundsDistance = 1.1f; 
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
-
-            bool isOutOfScene = screenPoint.x < -outOfBoundsDistance || screenPoint.x > 1 + outOfBoundsDistance ||
-                   screenPoint.y < -outOfBoundsDistance || screenPoint.y > 1 + outOfBoundsDistance ||
-                   screenPoint.z < 0;
-
-            if(isOutOfScene)
+            if(!transform.IsRendering())
             {
                 gameObject.SetActive(false);
                 if (bulletPool is not null) bulletPool.Release(this);
