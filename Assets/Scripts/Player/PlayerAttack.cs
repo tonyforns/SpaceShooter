@@ -14,6 +14,8 @@ public class PlayerAttack : MonoBehaviour
         {
             currentWeapon = Instantiate(currentWeaponPrefab, transform).GetComponent<IWeapon>();
         }
+
+        currentWeapon.Init(tag);
     }
 
     private void OnEnable()

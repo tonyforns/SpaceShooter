@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Life : MonoBehaviour
 {
+    public Action OnLifeChange;
+    [SerializeField] private int baseLife = 1;
+    [SerializeField] private int currentLife;
+
     public Action OnDeath;
-    private int baseLife = 5;
-    private int currentLife;
 
     private void Awake()
     {
@@ -14,6 +16,7 @@ public class Life : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLife -= damage;
+        OnLifeChange?.Invoke();
         if (currentLife <= 0)
         {
             OnDeath?.Invoke();
@@ -23,6 +26,8 @@ public class Life : MonoBehaviour
     public void ResetLife()
     {
         currentLife = baseLife;
+        OnLifeChange?.Invoke();
+
     }
     public void Heal(int healHits)
     {
@@ -31,6 +36,23 @@ public class Life : MonoBehaviour
         {
             currentLife = baseLife;
         }
+        OnLifeChange?.Invoke();
     }
 
+    public int GetCurrentLife()
+    {
+        return currentLife;
+    }
+
+    public float GetLifeNormalize()
+    {
+        return (float)currentLife / baseLife;
+    }
+
+    public void IncreaseBaseLife(int increaseAmount)
+    {
+        baseLife += increaseAmount;
+        currentLife += increaseAmount;
+        OnLifeChange?.Invoke();
+    }
 }

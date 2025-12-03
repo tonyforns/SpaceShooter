@@ -11,6 +11,6 @@ namespace Assets.Scripts.Interfaces
 
         void HandleOutOfScene();
     
-        void SetBulletPool(ObjectPool<IBullet> pool);
+        void Init(ObjectPool<IBullet> pool, string ignoreTag);
     }
 }

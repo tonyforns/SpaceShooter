@@ -1,8 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Transactions;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -10,45 +7,78 @@ namespace Assets.Scripts
 {
     public class BaseBullet : MonoBehaviour, IBullet
     {
+        [SerializeField] private string ignoreTag;
         [SerializeField] private float speed = 10F;
+        [SerializeField] private int damage = 1;
         private ObjectPool<IBullet> bulletPool;
+        private Rigidbody2D rb;
+
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void OnEnable()
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = transform.right * speed;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            HandleOutOfScene();
+        }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Bullet collided with " + collision.gameObject.name);
-            if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hitable) )
+            if(collision.gameObject.CompareTag(ignoreTag))
             {
-                hitable.Hit(1);
+                return;
             }
-            OnHit();
+
+            if (collision.gameObject.TryGetComponent<IHitable>(out var hitable))
+            {
+
+                hitable.Hit(damage);
+                OnHit();
+            }
         }
-        private void Update()
-        {
-            transform.Translate(transform.right * speed * Time.deltaTime);
-            HandleOutOfScene();
-        }
+
         public void Fire(Transform parentTransform)
         {
             transform.position = parentTransform.position;
             transform.rotation = parentTransform.rotation;
+
             gameObject.SetActive(true);
+
+            if (rb != null)
+            {
+                rb.linearVelocity = transform.right * speed;
+            }
         }
 
         public void OnHit()
         {
             gameObject.SetActive(false);
+            try {
+                if (bulletPool is not null) bulletPool.Release(this);
 
-            if(bulletPool is not null) bulletPool.Release(this);
+            } catch(Exception ex) {
+                Debug.Log("Error releasing bullet to pool: " + ex.Message);
+            }
         }
 
-        public void SetBulletPool(ObjectPool<IBullet> pool)
+        public void Init(ObjectPool<IBullet> pool, string ignoreTag)
         {
+            this.ignoreTag = ignoreTag;
             bulletPool = pool;
         }
 
         public void HandleOutOfScene()
         {
-            if(!transform.IsRendering())
+            if (!transform.IsRendering())
             {
                 gameObject.SetActive(false);
                 if (bulletPool is not null) bulletPool.Release(this);

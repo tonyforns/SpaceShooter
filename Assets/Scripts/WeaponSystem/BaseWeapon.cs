@@ -8,6 +8,7 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject firePoint;
     [SerializeField] private float coolDownTime;
+    [SerializeField] private string shooterTag;
 
     private float coolDownTimer;
     private ObjectPool<IBullet> bulletPool;
@@ -54,7 +55,7 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     private IBullet CreateBullet()
     {
         IBullet newBullet = Instantiate(bulletPrefab).GetComponent<IBullet>();
-        newBullet.SetBulletPool(bulletPool);
+        newBullet.Init(bulletPool, shooterTag);
         return newBullet;
     }
     private void OnGetBullet(IBullet bullet)
@@ -75,5 +76,10 @@ public class BaseWeapon : MonoBehaviour, IWeapon
         {
             Destroy(bulletMono.gameObject);
         }
+    }
+
+    public void Init(string tag)
+    {
+        shooterTag = tag;
     }
 }

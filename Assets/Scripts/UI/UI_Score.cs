@@ -1,0 +1,42 @@
+using System;
+using TMPro;
+using Unity.Mathematics.Geometry;
+using UnityEngine;
+
+public class UI_Score : MonoBehaviour
+{
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int currentScore = 0;
+    private int finalScore = 0;
+    private float updateInterval = 0.5f;
+    private float timer = 0f;
+    private void Awake()
+    {
+        if(scoreText == null)
+        {
+            scoreText = GetComponent<TextMeshProUGUI>();
+        }
+
+        ScoreSystem.Instance.OnScoreUpdated += UpdateScoreUI;
+    }
+
+    private void Update()
+    {
+        if(currentScore < finalScore)
+        {
+            currentScore = (int)Mathf.Lerp(currentScore , finalScore, timer / updateInterval);
+            if (currentScore > finalScore)
+            {
+                currentScore = finalScore;
+            }
+            scoreText.text = $"Score: {currentScore}";
+            timer += Time.deltaTime;
+        } 
+    }
+    private void UpdateScoreUI(int newScore)
+    {
+        timer = 0;
+        finalScore = newScore;
+        scoreText.text = $"Score: {newScore}";
+    }
+}

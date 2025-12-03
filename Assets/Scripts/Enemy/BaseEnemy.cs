@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 public class BaseEnemy : MonoBehaviour, IHitable
 {
     [SerializeField] private Life life;
+    [SerializeField] private int scoreValue = 10;
     private ObjectPool<BaseEnemy> enemyPool;
 
     private void Awake()
@@ -33,6 +34,20 @@ public class BaseEnemy : MonoBehaviour, IHitable
     private void Die()
     {
        gameObject.SetActive(false);
-       //enemyPool.Release(this);
+       ScoreSystem.Instance.AddScore(scoreValue);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<IHitable>(out var hitable))
+        {
+            hitable.Hit(1);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        Destroy(gameObject);
     }
 }
