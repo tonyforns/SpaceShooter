@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof(Life))]
 [RequireComponent (typeof(PlayerMovment))]
@@ -15,11 +17,9 @@ public class Player : Singleton<Player>, IHitable
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private ExplodeAnim explodeAnim;
 
-
     private new void Awake()
     {
         base.Awake();
-
         life = GetComponent<Life>();
         playerMovment = GetComponent<PlayerMovment>();
         playerAttack = GetComponent<PlayerAttack>();
@@ -38,7 +38,6 @@ public class Player : Singleton<Player>, IHitable
     {
         playerCollider.enabled = !isShieldUp;
     }
-
     public void Hit(int damage)
     {
         life.TakeDamage(damage);
@@ -48,13 +47,10 @@ public class Player : Singleton<Player>, IHitable
 
     private void HandleDeath()
     {
-        gameObject.SetActive(false);
+        SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.PlayerExplotion, transform.position);
         explodeAnim.Explode();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        HandleConsumible(collision);
+        SceneSystem.Instance.RestartSceneAfterDelay();
+        gameObject.SetActive(false);
     }
 
     private void HandleConsumible(Collider2D collision)
@@ -78,5 +74,10 @@ public class Player : Singleton<Player>, IHitable
     internal void ChangeWeapon(ExtraHelpWeapon extraHelpWeapon)
     {
         playerAttack.ChangeWeapon(extraHelpWeapon);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HandleConsumible(collision);
     }
 }

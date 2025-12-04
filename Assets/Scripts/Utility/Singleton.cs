@@ -18,4 +18,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if(_instance == this)
+        {
+            _instance = null;
+        }
+    }
 }

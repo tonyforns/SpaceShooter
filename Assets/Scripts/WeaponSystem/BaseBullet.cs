@@ -31,7 +31,7 @@ namespace Assets.Scripts
 
             if (collision.gameObject.TryGetComponent<IHitable>(out var hitable))
             {
-
+                SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.BulletHit, transform.position, true);
                 hitable.Hit(damage);
                 OnHit();
             }

@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(currentWeapon != null && currentWeapon.CanFire())
             {
+                SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.Fire, transform.position, true);
                 currentWeapon.Fire();
             }
         }

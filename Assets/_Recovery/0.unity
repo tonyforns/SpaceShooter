@@ -664,6 +664,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1486140608}
+        m_TargetAssemblyTypeName: SoundSystem, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &152415726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8299,6 +8311,62 @@ Transform:
   - {fileID: 352794497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1486140607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486140609}
+  - component: {fileID: 1486140608}
+  m_Layer: 0
+  m_Name: SoundSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486140608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486140607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a61e38ced24364dbcb467c6dd93f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundSystem
+  soundModels:
+  - {fileID: 11400000, guid: 1ff182c6455b2664db83c58c3cc1f98b, type: 2}
+  - {fileID: 11400000, guid: 5a6fda2dab9d89748aad2054cfcdecd3, type: 2}
+  - {fileID: 11400000, guid: 249ea9e61cdaf404a8cff061a7bfb76b, type: 2}
+  - {fileID: 11400000, guid: bff41541fbd01e6438bdb5fead247991, type: 2}
+  - {fileID: 11400000, guid: aefa61fd8e78fbe409ea984b525ec4b4, type: 2}
+  - {fileID: 11400000, guid: 2531ccebe1da2c6489ed96c04a615156, type: 2}
+  - {fileID: 11400000, guid: 7dbdcf7c6e1faf649a0905b44cd537b9, type: 2}
+  - {fileID: 11400000, guid: 1d24ff74b81f867468025073a4a26171, type: 2}
+  - {fileID: 11400000, guid: 82347d9ff6c823d43a2778712d2573b8, type: 2}
+  - {fileID: 11400000, guid: 8928daaca458b6d468bb852339abe703, type: 2}
+  - {fileID: 11400000, guid: 14dd7f139f3bf2e4b93d97b6ff96cf6d, type: 2}
+--- !u!4 &1486140609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486140607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.46889, y: -1.77432, z: 0.3407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1488489527
 GameObject:
   m_ObjectHideFlags: 0
@@ -8397,6 +8465,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1486140608}
+        m_TargetAssemblyTypeName: SoundSystem, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9672,6 +9752,52 @@ MonoBehaviour:
   - {fileID: 2052358247}
   - {fileID: 1587148783}
   shopGameObject: {fileID: 955428990}
+--- !u!1 &1829694259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829694261}
+  - component: {fileID: 1829694260}
+  m_Layer: 0
+  m_Name: SceneSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1829694260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829694259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da9f273234cedf4aaaffb7b90e5bd3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSystem
+  restartTimer: 3
+  useTransitionEffects: 1
+--- !u!4 &1829694261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829694259}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.46889, y: -1.77432, z: 0.3407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1843474565
 GameObject:
   m_ObjectHideFlags: 0
@@ -10741,3 +10867,5 @@ SceneRoots:
   - {fileID: 329074374}
   - {fileID: 393844513}
   - {fileID: 1316786352}
+  - {fileID: 1486140609}
+  - {fileID: 1829694261}

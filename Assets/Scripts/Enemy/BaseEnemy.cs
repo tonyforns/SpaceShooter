@@ -42,6 +42,7 @@ public class BaseEnemy : MonoBehaviour, IHitable
 
     internal void Die()
     {
+        SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.Explotion, transform.position, true);
         explodeAnim.Explode();
         gameObject.SetActive(false);
         ScoreSystem.Instance.AddScore(scoreValue);
@@ -51,6 +52,7 @@ public class BaseEnemy : MonoBehaviour, IHitable
     {
         if (collision.gameObject.TryGetComponent<IHitable>(out var hitable))
         {
+            SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.ShipCrush, transform.position, true);
             hitable.Hit(crushDamage);
             life.TakeDamage(crushDamage);
         }

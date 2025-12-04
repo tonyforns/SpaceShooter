@@ -6,6 +6,7 @@ public class Damager : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<IHitable>(out IHitable hitable))
         {
+            SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.BulletHit, transform.position, true);
             hitable.Hit(1);
         }
     }

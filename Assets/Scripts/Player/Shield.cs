@@ -42,6 +42,7 @@ public class Shield : MonoBehaviour, IHitable
 
     public void ShieldUp()
     {
+        SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.ShieldUp, transform.position);
         shieldLife.ResetLife();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, shieldLife.GetLifeNormalize());
         collider.enabled = true;
@@ -51,6 +52,7 @@ public class Shield : MonoBehaviour, IHitable
     }
     public void ShieldDown()
     {
+        SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.ShieldDown, transform.position);
         collider.enabled = false;
         spriteRenderer.enabled = false;
         timer = shieldBaseRechargeTime;

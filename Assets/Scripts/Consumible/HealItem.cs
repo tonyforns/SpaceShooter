@@ -6,6 +6,7 @@ public class HealItem : MonoBehaviour, IConsumible
 
     public void Consume(Player player, bool destroy = true)
     {
+        SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.Heal, player.transform.position);
         Heal(player.GetLife());
 
         if(destroy) Destroy(gameObject);
