@@ -15,6 +15,7 @@ public class Player : Singleton<Player>, IHitable
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private ExplodeAnim explodeAnim;
 
+
     private new void Awake()
     {
         base.Awake();
@@ -63,5 +64,19 @@ public class Player : Singleton<Player>, IHitable
         {
             consumible.Consume(this);
         }
+    }
+    public Life GetLife()
+    {
+        return life;
+    }
+
+    public Shield GetShield()
+    {
+        return shield;
+    }
+
+    internal void ChangeWeapon(ExtraHelpWeapon extraHelpWeapon)
+    {
+        playerAttack.ChangeWeapon(extraHelpWeapon);
     }
 }

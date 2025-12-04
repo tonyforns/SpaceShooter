@@ -34,6 +34,19 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void ChangeWeapon(IWeapon newWeapon)
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.DestroyWeapon();
+        }
+        GameObject weaponGameObject = (newWeapon as MonoBehaviour).gameObject;
+        GameObject newWeaponGameObject = Instantiate(weaponGameObject, transform);
+        currentWeapon = newWeaponGameObject.GetComponent<IWeapon>();
+        currentWeapon.Init(tag);
+        newWeaponGameObject.SetActive(false);
+        newWeaponGameObject.SetActive(true);
+    }
 
     private void OnDisable()
     {

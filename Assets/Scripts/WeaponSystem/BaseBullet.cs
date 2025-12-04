@@ -11,12 +11,6 @@ namespace Assets.Scripts
         [SerializeField] private float speed = 10F;
         [SerializeField] private int damage = 1;
         private ObjectPool<IBullet> bulletPool;
-        private Rigidbody2D rb;
-
-        internal void Awake()
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
 
         internal void Update()
         {
@@ -49,11 +43,6 @@ namespace Assets.Scripts
             transform.rotation = Quaternion.Euler(0, 0, parentTransform.eulerAngles.z);
 
             gameObject.SetActive(true);
-
-            if (rb != null)
-            {
-                rb.linearVelocity = transform.right * speed;
-            }
         }
 
         public void OnHit()

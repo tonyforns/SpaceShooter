@@ -7,7 +7,7 @@ public class Shield : MonoBehaviour, IHitable
     public Action<Collider2D> OnShieldTrigger;
 
     [SerializeField] private Life shieldLife;
-    [SerializeField] private float shieldBaseTime;
+    [SerializeField] private float shieldBaseRechargeTime = 10;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Collider2D collider;
     [SerializeField] private float timer = 0;
@@ -53,7 +53,7 @@ public class Shield : MonoBehaviour, IHitable
     {
         collider.enabled = false;
         spriteRenderer.enabled = false;
-        timer = shieldBaseTime;
+        timer = shieldBaseRechargeTime;
         OnShieldChange?.Invoke(collider.enabled);
     }
 
@@ -62,6 +62,12 @@ public class Shield : MonoBehaviour, IHitable
         shieldLife.TakeDamage(damage);
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, shieldLife.GetLifeNormalize());
     }
+
+    public void ReduceShieldRechargeTime(float porcentage)
+    {
+        shieldBaseRechargeTime *= (1 - porcentage);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

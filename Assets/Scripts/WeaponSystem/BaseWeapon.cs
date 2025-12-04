@@ -9,7 +9,6 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     [SerializeField] internal GameObject firePoint;
     [SerializeField] internal float coolDownTime;
     [SerializeField] internal string shooterTag;
-    [SerializeField] internal GameObject fireAnim;
 
     internal float coolDownTimer;
     internal ObjectPool<IBullet> bulletPool;
@@ -17,16 +16,20 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     private void OnEnable()
     {
         coolDownTimer = coolDownTime;
+        CreateBulletPool();
+    }
+
+    private void CreateBulletPool()
+    {
         bulletPool = new ObjectPool<IBullet>(
-           createFunc: CreateBullet,
-           actionOnGet: OnGetBullet,
-           actionOnRelease: OnReleaseBullet,
-           actionOnDestroy: OnDestroyBullet,
-           collectionCheck: true,
-           defaultCapacity: 10,
-           maxSize: 100
-       );
-        coolDownTimer = coolDownTime;
+            createFunc: CreateBullet,
+            actionOnGet: OnGetBullet,
+            actionOnRelease: OnReleaseBullet,
+            actionOnDestroy: OnDestroyBullet,
+            collectionCheck: true,
+            defaultCapacity: 10,
+            maxSize: 100
+            );
     }
    
 
@@ -44,12 +47,10 @@ public class BaseWeapon : MonoBehaviour, IWeapon
         return coolDownTimer <= 0;
     }
 
-    public void Fire()
+    public virtual void Fire()
     {
         if (CanFire())
         {
-            fireAnim?.SetActive(false);
-            fireAnim?.SetActive(true);
             IBullet bullet = bulletPool.Get();
             bullet.Fire(firePoint.transform);
             coolDownTimer = coolDownTime;
@@ -64,6 +65,10 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     }
     private void OnGetBullet(IBullet bullet)
     {
+        if (bullet is MonoBehaviour bulletMono)
+        {
+            bulletMono.gameObject.SetActive(true);
+        }
     }
 
     private void OnReleaseBullet(IBullet bullet)
@@ -85,5 +90,11 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     public void Init(string tag)
     {
         shooterTag = tag;
+    }
+
+    public void DestroyWeapon()
+    {
+        bulletPool.Clear();
+        Destroy(gameObject);
     }
 }
