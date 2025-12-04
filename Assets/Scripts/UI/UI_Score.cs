@@ -6,9 +6,10 @@ using UnityEngine;
 public class UI_Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI turretCountText;
     private int currentScore = 0;
     private int finalScore = 0;
-    private float updateInterval = 0.5f;
+    private float updateInterval = 0.25f;
     private float timer = 0f;
     private void Awake()
     {
@@ -16,8 +17,15 @@ public class UI_Score : MonoBehaviour
         {
             scoreText = GetComponent<TextMeshProUGUI>();
         }
-
+    }
+    private void Start()
+    {
         ScoreSystem.Instance.OnScoreUpdated += UpdateScoreUI;
+        ScoreSystem.Instance.OnTurretDestroyed += UpdateTurretCountUI;
+    }
+    private void UpdateTurretCountUI(int count)
+    {
+        turretCountText.text = $"{count}/6";
     }
 
     private void Update()
@@ -29,7 +37,7 @@ public class UI_Score : MonoBehaviour
             {
                 currentScore = finalScore;
             }
-            scoreText.text = $"Score: {currentScore}";
+            scoreText.text = $"{currentScore}";
             timer += Time.deltaTime;
         } 
     }
@@ -37,6 +45,6 @@ public class UI_Score : MonoBehaviour
     {
         timer = 0;
         finalScore = newScore;
-        scoreText.text = $"Score: {newScore}";
+        scoreText.text = $"{newScore}";
     }
 }

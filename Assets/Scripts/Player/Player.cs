@@ -13,7 +13,7 @@ public class Player : Singleton<Player>, IHitable
     [SerializeField] private PlayerMovment playerMovment;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Collider2D playerCollider;
-
+    [SerializeField] private ExplodeAnim explodeAnim;
 
     private new void Awake()
     {
@@ -48,6 +48,7 @@ public class Player : Singleton<Player>, IHitable
     private void HandleDeath()
     {
         gameObject.SetActive(false);
+        explodeAnim.Explode();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

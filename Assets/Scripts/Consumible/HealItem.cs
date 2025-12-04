@@ -4,11 +4,11 @@ public class HealItem : MonoBehaviour, IConsumible
 {
     [SerializeField] private int healAmount = 1;
 
-    public void Consume(Player player)
+    public void Consume(Player player, bool destroy = true)
     {
         Heal(player.GetComponent<Life>());
 
-        Destroy(gameObject);
+        if(destroy) Destroy(gameObject);
     }
 
     public void Heal(Life life)

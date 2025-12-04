@@ -2,6 +2,13 @@ fileFormatVersion: 2
 guid: 5960056f1a158354c9d34267efa08f77
 labels:
 - Turret
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27662
+  packageName: 2D Space Kit
+  packageVersion: Initial 2
+  assetPath: Assets/2D Space Kit/Turrets/Crosshair.png
+  uploadId: 46238
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +43,7 @@ TextureImporter:
   maxTextureSize: 64
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 16
     mipBias: 0
     wrapU: 1
@@ -130,10 +137,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 27662
-  packageName: 2D Space Kit
-  packageVersion: Initial 2
-  assetPath: Assets/2D Space Kit/Turrets/Crosshair.png
-  uploadId: 46238

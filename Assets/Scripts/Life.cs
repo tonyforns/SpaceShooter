@@ -19,6 +19,7 @@ public class Life : MonoBehaviour
         OnLifeChange?.Invoke();
         if (currentLife <= 0)
         {
+            currentLife = 0;
             OnDeath?.Invoke();
         }
     }

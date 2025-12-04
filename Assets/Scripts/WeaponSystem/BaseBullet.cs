@@ -13,20 +13,17 @@ namespace Assets.Scripts
         private ObjectPool<IBullet> bulletPool;
         private Rigidbody2D rb;
 
-        private void Awake()
+        internal void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void OnEnable()
+        internal void Update()
         {
-            if (rb != null)
-            {
-                rb.linearVelocity = transform.right * speed;
-            }
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
 
-        private void FixedUpdate()
+        internal void FixedUpdate()
         {
             HandleOutOfScene();
         }
@@ -49,7 +46,7 @@ namespace Assets.Scripts
         public void Fire(Transform parentTransform)
         {
             transform.position = parentTransform.position;
-            transform.rotation = parentTransform.rotation;
+            transform.rotation = Quaternion.Euler(0, 0, parentTransform.eulerAngles.z);
 
             gameObject.SetActive(true);
 

@@ -10,7 +10,7 @@ public class Shield : MonoBehaviour, IHitable
     [SerializeField] private float shieldBaseTime;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Collider2D collider;
-    private float timer = 0;
+    [SerializeField] private float timer = 0;
 
 
     private void Awake()
@@ -47,6 +47,7 @@ public class Shield : MonoBehaviour, IHitable
         collider.enabled = true;
         spriteRenderer.enabled = true;
         OnShieldChange?.Invoke(collider.enabled);
+        timer = 0;
     }
     public void ShieldDown()
     {

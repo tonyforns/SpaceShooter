@@ -5,13 +5,14 @@ using UnityEngine.Pool;
 
 public class BaseWeapon : MonoBehaviour, IWeapon
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject firePoint;
-    [SerializeField] private float coolDownTime;
-    [SerializeField] private string shooterTag;
+    [SerializeField] internal GameObject bulletPrefab;
+    [SerializeField] internal GameObject firePoint;
+    [SerializeField] internal float coolDownTime;
+    [SerializeField] internal string shooterTag;
+    [SerializeField] internal GameObject fireAnim;
 
-    private float coolDownTimer;
-    private ObjectPool<IBullet> bulletPool;
+    internal float coolDownTimer;
+    internal ObjectPool<IBullet> bulletPool;
 
     private void OnEnable()
     {
@@ -25,6 +26,7 @@ public class BaseWeapon : MonoBehaviour, IWeapon
            defaultCapacity: 10,
            maxSize: 100
        );
+        coolDownTimer = coolDownTime;
     }
    
 
@@ -46,6 +48,8 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     {
         if (CanFire())
         {
+            fireAnim?.SetActive(false);
+            fireAnim?.SetActive(true);
             IBullet bullet = bulletPool.Get();
             bullet.Fire(firePoint.transform);
             coolDownTimer = coolDownTime;

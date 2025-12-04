@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IConsumible 
 {
-    void Consume(Player player);
+    void Consume(Player player, bool destroy = true);
 }
