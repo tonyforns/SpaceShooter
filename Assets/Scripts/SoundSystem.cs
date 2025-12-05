@@ -30,7 +30,7 @@ public class SoundSystem : Singleton<SoundSystem>
         enviromentAudiSource.clip = soundDictionary[SoundModelSO.SoundName.BackgroundMusic];
         enviromentAudiSource.loop = true;
         enviromentAudiSource.Play();
-        enviromentAudiSource.volume = 0.2f;
+        enviromentAudiSource.volume = 0.1f;
     }
 
     public void PlayClickSound()
