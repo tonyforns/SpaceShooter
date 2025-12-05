@@ -25,7 +25,7 @@ public class UI_Score : MonoBehaviour
     }
     private void UpdateTurretCountUI(int count)
     {
-        turretCountText.text = $"{count}/6";
+        turretCountText.text = $"{count}/{ScoreSystem.Instance.GetTotalTurrerCount()}";
     }
 
     private void Update()

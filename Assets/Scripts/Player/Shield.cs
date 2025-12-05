@@ -76,4 +76,8 @@ public class Shield : MonoBehaviour, IHitable
         OnShieldTrigger?.Invoke(collision);
     }
 
+    internal float GetRechargeTimeNormaize()
+    {
+        return 1 - (timer / shieldBaseRechargeTime);
+    }
 }

@@ -8,6 +8,7 @@ public class ScoreSystem : Singleton<ScoreSystem>
     public Action OnAllTurretsDestroyed;
 
     [SerializeField] private int score = 0;
+    [SerializeField] private int totalTurrets = 6;
     [SerializeField] private int turretKilledCount;
 
     public int CurrentScore { get => score; }
@@ -15,8 +16,6 @@ public class ScoreSystem : Singleton<ScoreSystem>
     private new void Awake()
     {
         base.Awake();
-
-        //ResetScore();
     }
     private void Start()
     {
@@ -38,11 +37,19 @@ public class ScoreSystem : Singleton<ScoreSystem>
     public void TurretKilled()
     {
         turretKilledCount++;
-        OnTurretDestroyed?.Invoke(turretKilledCount);
-        if (turretKilledCount == 6)
+        if (turretKilledCount == totalTurrets)
         {
             OnAllTurretsDestroyed?.Invoke();
+            if(totalTurrets != 12) turretKilledCount = 0;
+            totalTurrets = 12;
         }
+        OnTurretDestroyed?.Invoke(turretKilledCount);
+
+    }
+
+    public int GetTotalTurrerCount()
+    {
+        return totalTurrets;
     }
 
     internal void DecreaseScore(int cost)

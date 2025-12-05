@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof(Life))]
@@ -9,6 +10,8 @@ using UnityEngine.SceneManagement;
 public class Player : Singleton<Player>, IHitable
 {
     public Action<float> OnLifeChanged;
+    public Action<bool> OnShieldChanged;
+    public Action OnDeath;
 
     [SerializeField] private Life life;
     [SerializeField] private Shield shield;
@@ -16,6 +19,7 @@ public class Player : Singleton<Player>, IHitable
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private ExplodeAnim explodeAnim;
+
 
     private new void Awake()
     {
@@ -25,6 +29,7 @@ public class Player : Singleton<Player>, IHitable
         playerAttack = GetComponent<PlayerAttack>();
 
     }
+
     private void Start()
     {
         life.OnDeath += HandleDeath;
@@ -37,6 +42,11 @@ public class Player : Singleton<Player>, IHitable
     private void HandleShieldChange(bool isShieldUp)
     {
         playerCollider.enabled = !isShieldUp;
+        OnShieldChanged.Invoke(isShieldUp);
+    }
+    public float GetShieldTimerNormalize()
+    {
+        return shield.GetRechargeTimeNormaize();
     }
     public void Hit(int damage)
     {
@@ -49,7 +59,7 @@ public class Player : Singleton<Player>, IHitable
     {
         SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.PlayerExplotion, transform.position);
         explodeAnim.Explode();
-        SceneSystem.Instance.RestartSceneAfterDelay();
+        OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
 

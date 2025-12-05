@@ -61,25 +61,6 @@ public class TurretEnemy : BaseEnemy
             StopFiring();
         }
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player entered turret range");
-    //        targetTransform = collision.transform;
-    //        StartFiring();
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player exited turret range");
-    //        targetTransform = null;
-    //        StopFiring();
-    //    }
-    //}
     private void StartFiring()
     {
         weapon.SetTarget(targetTransform);
