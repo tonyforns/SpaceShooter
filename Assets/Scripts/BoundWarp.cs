@@ -19,7 +19,7 @@ public class BoundWarp : MonoBehaviour
             {
                 postion.y = -postion.y + (postion.y > 0 ?   offset : -offset);
             }
-
+            SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.BoundWarp, postion);
             Player.Instance.transform.position = postion;
         }
     }

@@ -67,6 +67,7 @@ public class Shield : MonoBehaviour, IHitable
 
     public void ReduceShieldRechargeTime(float porcentage)
     {
+        if(porcentage < 0 || porcentage > 1) return;
         shieldBaseRechargeTime *= (1 - porcentage);
     }
 

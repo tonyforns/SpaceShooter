@@ -59,6 +59,7 @@ public class Player : Singleton<Player>, IHitable
     {
         SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.PlayerExplotion, transform.position);
         explodeAnim.Explode();
+
         OnDeath?.Invoke();
         gameObject.SetActive(false);
     }

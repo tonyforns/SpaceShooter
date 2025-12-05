@@ -47,6 +47,7 @@ public class Life : MonoBehaviour
 
     public float GetLifeNormalize()
     {
+        if(currentLife < 0) return 0f;
         return (float)currentLife / baseLife;
     }
 

@@ -18,7 +18,8 @@ public class SoundModelSO : ScriptableObject
         Hit,
         BulletHit,
         PlayerExplotion,
-        ShipCrush
+        ShipCrush,
+        BoundWarp
             
     }
     

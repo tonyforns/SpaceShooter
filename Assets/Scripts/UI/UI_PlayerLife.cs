@@ -6,7 +6,7 @@ public class UI_PlayerLife : MonoBehaviour
 {
     [SerializeField] private Slider lifeSlider;
     [SerializeField] private Slider shieldSlider;
-    [SerializeField] private GameObject playerLifeUI;
+    [SerializeField] private Image playerLifeUI;
     [SerializeField] private GameObject restartMessage;
     private float previusLife = 1;
     private bool isShieldUp = false;
@@ -40,12 +40,12 @@ public class UI_PlayerLife : MonoBehaviour
     }
     private void UpdateLifeUI(float lifeNormalize)
     {
-        if (lifeNormalize < previusLife)
-        {
-            playerLifeUI.SetActive(false);
-            playerLifeUI.SetActive(true);
-        }
+        if (lifeNormalize == 1) return;
+        playerLifeUI.color = lifeNormalize <= previusLife ? Color.red : Color.green;
+        playerLifeUI.gameObject.SetActive(false);
+        playerLifeUI.gameObject.SetActive(true);
 
+        previusLife = lifeNormalize;
         lifeSlider.value = lifeNormalize;
         lifeSlider.gameObject.SetActive(lifeSlider.value > 0);
 

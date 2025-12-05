@@ -1177,7 +1177,7 @@ Transform:
   m_GameObject: {fileID: 162310777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9915, y: 6.7269, z: 0}
+  m_LocalPosition: {x: -1, y: 7, z: 0}
   m_LocalScale: {x: 22.243355, y: 0.2337, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1197,6 +1197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoundWarp
   warpX: 0
   warpY: 1
+  offset: 0.5
 --- !u!1 &198390210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,6 +2221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoundWarp
   warpX: 0
   warpY: 1
+  offset: 0.5
 --- !u!61 &340420956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2333,7 +2335,7 @@ Transform:
   m_GameObject: {fileID: 340420954}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0998, y: -7.2969, z: -10}
+  m_LocalPosition: {x: -1, y: -7.2, z: -10}
   m_LocalScale: {x: 22.168386, y: 0.2337, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2676,7 +2678,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 162310781}
   - {fileID: 340420958}
@@ -3326,7 +3328,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4616,9 +4618,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 584457106}
   - {fileID: 961836231}
   - {fileID: 695501963}
+  - {fileID: 584457106}
   - {fileID: 1753171230}
   - {fileID: 2053365227}
   m_Father: {fileID: 0}
@@ -5776,7 +5778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_PlayerLife
   lifeSlider: {fileID: 1082284512}
   shieldSlider: {fileID: 1586211311}
-  playerLifeUI: {fileID: 1714416217}
+  playerLifeUI: {fileID: 1714416219}
   restartMessage: {fileID: 2053365226}
 --- !u!1 &964270099
 GameObject:
@@ -12640,6 +12642,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82347d9ff6c823d43a2778712d2573b8, type: 2}
   - {fileID: 11400000, guid: 8928daaca458b6d468bb852339abe703, type: 2}
   - {fileID: 11400000, guid: 14dd7f139f3bf2e4b93d97b6ff96cf6d, type: 2}
+  - {fileID: 11400000, guid: c94a140057f567d4c86ac3cc96cc0826, type: 2}
 --- !u!4 &1486140609
 Transform:
   m_ObjectHideFlags: 0
@@ -15960,6 +15963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoundWarp
   warpX: 1
   warpY: 0
+  offset: 0.5
 --- !u!61 &1832409810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16073,7 +16077,7 @@ Transform:
   m_GameObject: {fileID: 1832409808}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.0824, y: -0.303, z: -10}
+  m_LocalPosition: {x: -12, y: 0, z: -10}
   m_LocalScale: {x: 14.334046, y: 0.024703039, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16331,6 +16335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoundWarp
   warpX: 1
   warpY: 0
+  offset: 0.5
 --- !u!61 &1905174373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16444,7 +16449,7 @@ Transform:
   m_GameObject: {fileID: 1905174371}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 10.0446, y: 1.334, z: -10}
+  m_LocalPosition: {x: 10.0446, y: 0, z: -10}
   m_LocalScale: {x: 17.537886, y: 0.19892204, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18356,11 +18361,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1254882928024149194, guid: 85da81cd5792fc644bbf188824d99c8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.1
+      value: -7.95
       objectReference: {fileID: 0}
     - target: {fileID: 1254882928024149194, guid: 85da81cd5792fc644bbf188824d99c8d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 1254882928024149194, guid: 85da81cd5792fc644bbf188824d99c8d, type: 3}
       propertyPath: m_LocalPosition.z
