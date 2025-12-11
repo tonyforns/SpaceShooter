@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Life : MonoBehaviour
 {
     public Action OnLifeChange;
     [SerializeField] private int baseLife = 1;
     [SerializeField] private int currentLife;
+
+    [SerializeField] private Slider lifeBar;
 
     public Action OnDeath;
 
@@ -22,6 +25,7 @@ public class Life : MonoBehaviour
             currentLife = 0;
             OnDeath?.Invoke();
         }
+        if(lifeBar) lifeBar.value = GetLifeNormalize();
     }
 
     public void ResetLife()
