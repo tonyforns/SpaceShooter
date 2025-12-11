@@ -7,7 +7,6 @@ public class OrbitalSpawner : MonoBehaviour, IConsumible
     {
         SoundSystem.Instance.PlaySound(SoundModelSO.SoundName.BuyPowerUp, player.transform.position);
         GameObject orbital = Instantiate(orbitalPrefab);
-        Debug.Log("Orbital spawned");
         orbital.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         orbital.transform.parent = player.transform;
         orbital.transform.localPosition = Vector3.zero;

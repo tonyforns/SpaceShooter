@@ -52,7 +52,6 @@ namespace Assets.Scripts
                 if (bulletPool is not null) bulletPool.Release(this);
 
             } catch(Exception ex) {
-                Debug.Log("Error releasing bullet to pool: " + ex.Message);
             }
         }
 

@@ -39,9 +39,9 @@ public class Spawner : MonoBehaviour
     private void UpdateDifficulty()
     {
         float progress = gameTime / difficultyIncreaseRate;
-        progress = Mathf.Clamp01(progress); // Mantener entre 0 y 1
+        progress = Mathf.Clamp01(progress); 
         
-        float curveProgress = 1f - Mathf.Pow(1f - progress, 2f); // Curva acelerada
+        float curveProgress = 1f - Mathf.Pow(1f - progress, 2f);
         
         currentSpawnInterval = Mathf.Lerp(initialSpawnInterval, minimumSpawnInterval, curveProgress);
     }

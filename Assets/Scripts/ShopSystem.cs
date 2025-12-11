@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopSystem : MonoBehaviour
+public class ShopSystem : Singleton<ShopSystem>
 {
     [SerializeField] private List<PowerUpBuyItem> powerUpList;
     [SerializeField] private GameObject shopGameObject;
@@ -10,31 +10,40 @@ public class ShopSystem : MonoBehaviour
     private void Start()
     {
         CloseShop();
+        foreach (PowerUpBuyItem item in powerUpList)
+        {
+           item.RegisterOnPowerUpBought(UpdateShop);
+        }
         ScoreSystem.Instance.OnScoreUpdated += UpdateShop;
     }
 
-    private void UpdateShop(int obj)
+    private void UpdateShop()
     {
-        if (!gameObject.activeSelf) return;
+        //if (!shopGameObject.activeSelf) return;
         foreach (PowerUpBuyItem item in powerUpList)
         {
             if (item) item.SetActive(item.GetPowerUpData().cost <= ScoreSystem.Instance.CurrentScore);
         }
     }
+    private void UpdateShop(int obj)
+    {
+        UpdateShop();
+    }
 
     public void OpenShop()
     {
-        Time.timeScale = 0;
-        foreach (PowerUpBuyItem item in powerUpList) { 
-
-            if (item) item.SetActive(item.GetPowerUpData().cost <= ScoreSystem.Instance.CurrentScore);
-        }
+        UpdateShop();
         shopGameObject.SetActive(true);
     }
 
     public void CloseShop()
     {
-        Time.timeScale = 1;
         shopGameObject.SetActive(false);
+        UpdateShop();
+    }
+
+    public bool IsShopOpen()
+    {
+        return shopGameObject.activeSelf;
     }
 }

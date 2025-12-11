@@ -21,6 +21,7 @@ public class PowerUpBuyItem : MonoBehaviour
     [SerializeField] private Image iconRenderer;
     [SerializeField] private Button buyButton;
 
+    private Action OnPowerUpBought;
     private void Awake()
     {
         if(buyButton is null) buyButton = GetComponent<Button>();
@@ -30,6 +31,11 @@ public class PowerUpBuyItem : MonoBehaviour
         cost.text = powerUpData.cost.ToString();
         iconRenderer.sprite = powerUpData.icon;
     }
+
+    public void RegisterOnPowerUpBought(Action action)
+    {
+        OnPowerUpBought += action;
+    }   
 
     public bool TryToBuyPowerUp(int cost)
     {
@@ -45,6 +51,7 @@ public class PowerUpBuyItem : MonoBehaviour
     {
         if (TryToBuyPowerUp(powerUpData.cost))
         {
+            OnPowerUpBought?.Invoke();
             powerUp.Consume(player, false);
         }
     }
